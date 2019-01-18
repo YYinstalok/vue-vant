@@ -43,7 +43,7 @@ export default {
 //原生的动画效果
 .v-enter {
   opacity: 0;
-  transform: translateX(100%)
+  transform: translateX(100%);
 }
 .v-leave-to {
   opacity: 0;

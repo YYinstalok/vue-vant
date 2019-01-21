@@ -12,7 +12,7 @@ Vue.use(vueResource)
 Vue.http.options.root = 'http://127.0.0.1:5000/'
 Vue.http.options.emulateJSON = true;
 
-//引入moment
+//引入moment 并配置全局的时间过滤器
 import moment from 'moment'
 Vue.filter('datefmt',(data,arg="YYYY-MM-DD HH:mm:ss")=>{
   return moment(data).format(arg)
@@ -24,7 +24,7 @@ Vue.filter('datefmt',(data,arg="YYYY-MM-DD HH:mm:ss")=>{
 // Vue.prototype.$http = axios
 
 //vant 按需引入部分
-import { NavBar,Tabbar,TabbarItem,Swipe, SwipeItem,Card,Button} from 'vant';
+import { NavBar,Tabbar,TabbarItem,Swipe, SwipeItem,Card,Button, Tab, Tabs,Lazyload,Stepper  } from 'vant';
 Vue.use(NavBar)
   .use(Tabbar)
   .use(TabbarItem)
@@ -32,6 +32,10 @@ Vue.use(NavBar)
   .use(SwipeItem)
   .use(Card)
   .use(Button)
+  .use(Tab)
+  .use(Tabs)
+  .use(Lazyload)
+  .use(Stepper)
 
 Vue.config.productionTip = false
 

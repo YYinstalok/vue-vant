@@ -29,7 +29,7 @@ export default {
     this.getNewsList();
   },
   methods: {
-    async getNewsList() {
+    async getNewsList() {//获取新闻列表数据
       const res = await this.$http.get("api/getnewslist");
       if (res.data.status == 0) {
         // console.log(res.data.message);

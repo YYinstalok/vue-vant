@@ -1,8 +1,8 @@
 <template>
   <div class="comment">
     <h3>发表评论</h3>
-    <textarea placeholder="请输入要BB的内容(最多吐槽120字)" maxlength="120"></textarea>
-    <van-button class="btn" size="large">发表评论</van-button>
+    <textarea placeholder="请输入要BB的内容(最多吐槽120字)" maxlength="120" v-model="msg"></textarea>
+    <van-button class="btn" size="large" @click="postComment">发表评论</van-button>
 
     <div class="list">
       <div class="item" v-for="(item,i) in comment" :key="item.id">
@@ -17,10 +17,12 @@
 </template>
 
 <script>
+import {Toast} from 'vant'
 export default {
   data: () => ({
     pageindex:1,
-    comment:[]
+    comment:[],
+    msg:''
   }),
   props:['id'],
   created(){
@@ -31,6 +33,7 @@ export default {
       const {data:{status,message}} = await this.$http.get('api/getcomments/'+this.id+'?pageindex='+this.pageindex+'')
       if(status == 0) {
         // console.log(message);
+        //拼接数据，防止后面的数据将前面的数据覆盖
         this.comment = this.comment.concat(message) 
       }
     },
@@ -41,6 +44,31 @@ export default {
      } else {
        return
      }
+    },
+    async postComment(){//发表评论
+
+    // 1. 先判断是否输入内容 判断如果没有输入内容友好提示
+      if(this.msg.trim().length == 0) {
+        toast('请输入要BB的内容')
+        return
+      }
+
+      const result = await this.$http.post('api/postcomment/'+this.$route.params.id,{content:this.msg.trim()})
+      
+      if(result.body.status == 0) {
+        // 1. 拼接出一个评论对象
+        const cmt = {
+          user_name:'匿名用户',
+          add_time:Date.now(),
+          content:this.msg.trim()
+        }
+         // 添加到数组的开头 重新修改  comments 使得  model 改变  v-for 自动就刷新数据
+        this.comment.unshift(cmt)
+        this.msg = ''
+      } else {
+        Toast('发表评论失败')
+      }
+
     }
   }
 
@@ -60,6 +88,8 @@ export default {
     height: 80px;
     width: 100%;
     font-size: 14px;
+    border: 0;
+    border: 1px solid #ddd;
   }
   .btn {
     background-color: #26a2ff;

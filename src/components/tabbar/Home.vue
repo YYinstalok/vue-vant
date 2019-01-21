@@ -1,11 +1,7 @@
 <template>
   <div class="home">
     <!-- 轮播图 -->
-    <van-swipe class="dome-swipe" :autoplay="3000" indicator-color="white">
-      <van-swipe-item class="item" v-for="item in bannerList" :key="item.url">
-        <img :src="item.img" alt>
-      </van-swipe-item>
-    </van-swipe>
+    <swiper :bannerList="bannerList"></swiper>
 
     <!-- 六宫格导航 -->
     <gird></gird>
@@ -16,6 +12,7 @@
 import { Toast } from "vant";
 //导入 六宫格导航
 import gird from "@/components/subcomponent/gird";
+import swiper from "@/components/subcomponent/Swiper";
 export default {
   data() {
     return {
@@ -48,7 +45,8 @@ export default {
     }
   },
   components: {
-    gird
+    gird,
+    swiper
   }
 };
 </script>
@@ -56,15 +54,6 @@ export default {
 
 <style lang='less' scoped>
 .home {
-  .dome-swipe {
-    width: 100%;
-    height: 200px;
-    .item {
-      img {
-        width: 100%;
-        height: 100%;
-      }
-    }
-  }
+  
 }
 </style>

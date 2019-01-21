@@ -12,11 +12,13 @@
 
     <!-- 评论模块 -->
     <comment :id='id'></comment>
+
   </div>
 </template>
 
 <script>
 import {Toast} from 'vant'
+//引入评论子组件
 import comment from '../subcomponent/Comment'
 export default {
   data(){
@@ -29,7 +31,7 @@ export default {
     this.getnewsInfo()
   },
   methods:{
-    async getnewsInfo(){
+    async getnewsInfo(){//获取新闻详情页数据
       const {data:{status,message}} = await this.$http.get('api/getnew/'+this.id)
       // console.log(message);
       

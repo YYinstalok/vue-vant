@@ -12,7 +12,7 @@
     <van-tabbar v-model="active">
       <van-tabbar-item to="/home" icon="wap-home">首页</van-tabbar-item>
       <van-tabbar-item to="/user" icon="user-o">会员</van-tabbar-item>
-      <van-tabbar-item to="/shoppingcar" icon="shopping-cart-o" info="0" id="cart">购物车</van-tabbar-item>
+      <van-tabbar-item to="/shoppingcar" icon="shopping-cart-o" :info="$store.getters.getCount" id="cart">购物车</van-tabbar-item>
       <van-tabbar-item to="/search" icon="search">搜索</van-tabbar-item>
     </van-tabbar>
   </div>
@@ -28,7 +28,7 @@ export default {
     goBack(){
       this.$router.go(-1)
     }
-  }
+  },
 };
 </script>
 

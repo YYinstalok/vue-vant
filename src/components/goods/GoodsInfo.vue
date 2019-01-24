@@ -99,6 +99,16 @@ export default {
       setTimeout(() => {
         this.btnFlag = false;
       },500);
+
+
+      const goodlist = {
+        id:this.id,
+        price:this.info.sell_price,
+        count:this.value,
+        selected: true
+      }
+      this.$store.commit('addshop',goodlist)
+
     },
     getOffset() {//获取小球和徽标的位置
         // 获取小球的 在页面中的位置  left   top    (x,y)

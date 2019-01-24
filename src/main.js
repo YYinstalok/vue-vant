@@ -4,6 +4,7 @@ import Vue from 'vue'
 import App from './App'
 //引入路由入口文件index
 import router from './router'
+import store from './store'
 
 //引入vue-resource
 import vueResource from 'vue-resource'
@@ -24,7 +25,7 @@ Vue.filter('datefmt',(data,arg="YYYY-MM-DD HH:mm:ss")=>{
 // Vue.prototype.$http = axios
 
 //vant 按需引入部分
-import { NavBar,Tabbar,TabbarItem,Swipe, SwipeItem,Card,Button, Tab, Tabs,Lazyload,Stepper  } from 'vant';
+import { NavBar,Tabbar,TabbarItem,Swipe, SwipeItem,Card,Button, Tab, Tabs,Lazyload,Stepper ,Switch  } from 'vant';
 Vue.use(NavBar)
   .use(Tabbar)
   .use(TabbarItem)
@@ -36,6 +37,7 @@ Vue.use(NavBar)
   .use(Tabs)
   .use(Lazyload)
   .use(Stepper)
+  .use(Switch)
 
 Vue.config.productionTip = false
 
@@ -43,6 +45,7 @@ Vue.config.productionTip = false
 new Vue({
   el: '#app',
   router,
+  store,
   components: {
     App
   },
